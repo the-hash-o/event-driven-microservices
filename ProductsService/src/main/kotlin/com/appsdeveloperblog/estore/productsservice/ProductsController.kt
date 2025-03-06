@@ -1,15 +1,32 @@
 package com.appsdeveloperblog.estore.productsservice
 
+import com.appsdeveloperblog.estore.productsservice.command.CreateProductCommand
+import com.appsdeveloperblog.estore.productsservice.model.CreateProductRestModel
+import org.axonframework.commandhandling.gateway.CommandGateway
 import org.springframework.core.env.Environment
 import org.springframework.web.bind.annotation.*
+import java.util.UUID
 
 @RestController
 @RequestMapping("/products")
-class ProductsController(private val env: Environment) {
+class ProductsController(private val env: Environment, private val commandGateway: CommandGateway) {
 
     @PostMapping
-    fun handlePost(): String {
-        return "HTTP POST Handled"
+    fun handlePost(@RequestBody product: CreateProductRestModel): String {
+        val createProductCommand = CreateProductCommand(
+            productId = UUID.randomUUID().toString(),
+            title = product.title,
+            price = product.price,
+            quantity = product.quantity
+        )
+
+        val commandGatewayResponse = try {
+            commandGateway.sendAndWait(createProductCommand)
+        } catch (e: Exception) {
+            e.localizedMessage
+        }
+
+        return commandGatewayResponse
     }
 
     @GetMapping
