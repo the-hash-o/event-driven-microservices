@@ -14,7 +14,7 @@ class ProductsController(private val env: Environment, private val commandGatewa
     @PostMapping
     fun handlePost(@RequestBody product: CreateProductRestModel): String {
         val createProductCommand = CreateProductCommand(
-            productId = UUID.randomUUID().toString(),
+            productId = UUID.randomUUID(),
             title = product.title,
             price = product.price,
             quantity = product.quantity

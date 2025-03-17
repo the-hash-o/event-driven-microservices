@@ -8,12 +8,13 @@ import org.axonframework.modelling.command.AggregateLifecycle
 import org.axonframework.spring.stereotype.Aggregate
 import org.springframework.beans.BeanUtils
 import java.math.BigDecimal
+import java.util.UUID
 
 @Aggregate
 class ProductAggregate{
 
     @AggregateIdentifier
-    private lateinit var productId: String
+    private lateinit var productId: UUID
     private lateinit var title: String
     private lateinit var price: BigDecimal
     private var quantity: Int = 0
