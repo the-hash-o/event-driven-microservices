@@ -6,7 +6,7 @@ import java.util.UUID
 
 data class CreateProductCommand (
     @TargetAggregateIdentifier
-    val productId: UUID,
+    val productId: String,
     val title: String,
     val price: BigDecimal,
     val quantity: Int

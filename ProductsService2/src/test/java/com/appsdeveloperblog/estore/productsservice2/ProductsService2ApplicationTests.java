@@ -1,0 +1,13 @@
+package com.appsdeveloperblog.estore.productsservice2;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class ProductsService2ApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}

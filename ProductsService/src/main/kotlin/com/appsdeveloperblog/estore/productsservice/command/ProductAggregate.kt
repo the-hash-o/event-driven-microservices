@@ -14,7 +14,7 @@ import java.util.UUID
 class ProductAggregate{
 
     @AggregateIdentifier
-    private lateinit var productId: UUID
+    private lateinit var productId: String
     private lateinit var title: String
     private lateinit var price: BigDecimal
     private var quantity: Int = 0

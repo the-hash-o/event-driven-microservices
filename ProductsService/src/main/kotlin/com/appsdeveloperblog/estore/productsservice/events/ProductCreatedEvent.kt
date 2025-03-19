@@ -1,9 +1,8 @@
 package com.appsdeveloperblog.estore.productsservice.events
 
 import java.math.BigDecimal
-import java.util.*
 
-data class ProductCreatedEvent(val productId: UUID,
+data class ProductCreatedEvent(val productId: String,
                                val title: String,
                                val price: BigDecimal,
                                val quantity: Int)
