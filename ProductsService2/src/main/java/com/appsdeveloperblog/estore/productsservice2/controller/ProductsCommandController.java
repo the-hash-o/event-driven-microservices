@@ -2,6 +2,7 @@ package com.appsdeveloperblog.estore.productsservice2.controller;
 
 import com.appsdeveloperblog.estore.productsservice2.command.CreateProductCommand;
 import com.appsdeveloperblog.estore.productsservice2.model.CreateProductRestModel;
+import jakarta.validation.Valid;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -23,7 +24,7 @@ public class ProductsCommandController {
     }
 
     @PostMapping
-    public String handlePost(@RequestBody CreateProductRestModel product) {
+    public String handlePost(@Valid @RequestBody CreateProductRestModel product) {
         CreateProductCommand createProductCommand = new CreateProductCommand(
                 UUID.randomUUID().toString(),
                 product.getTitle(),
