@@ -1,6 +1,6 @@
 package com.appsdeveloperblog.estore.productsservice2.data.repo;
 
-import com.appsdeveloperblog.estore.productsservice2.data.ProductEntity;
+import com.appsdeveloperblog.estore.productsservice2.data.entity.ProductEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

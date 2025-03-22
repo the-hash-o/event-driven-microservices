@@ -1,6 +1,9 @@
 package com.appsdeveloperblog.estore.productsservice2.interceptor;
 
 import com.appsdeveloperblog.estore.productsservice2.command.CreateProductCommand;
+import com.appsdeveloperblog.estore.productsservice2.data.entity.ProductLookupEntity;
+import com.appsdeveloperblog.estore.productsservice2.data.repo.ProductLookupRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandMessage;
 import org.axonframework.messaging.MessageDispatchInterceptor;
@@ -12,7 +15,10 @@ import java.util.function.BiFunction;
 
 @Component
 @Slf4j
+@RequiredArgsConstructor
 public class CreateProductCommandInterceptor implements MessageDispatchInterceptor<CommandMessage<?>> {
+
+    private final ProductLookupRepository productLookupRepository;
 
     @Nonnull
     @Override
@@ -28,14 +34,12 @@ public class CreateProductCommandInterceptor implements MessageDispatchIntercept
         };
     }
 
-    private static void validateCreateProductCommand(CommandMessage<?> command) {
+    private void validateCreateProductCommand(CommandMessage<?> command) {
         CreateProductCommand createProductCommand = (CreateProductCommand) command.getPayload();
+        ProductLookupEntity productLookupEntity = productLookupRepository.findByProductIdOrTitle(createProductCommand.getProductId(), createProductCommand.getTitle());
 
-        if (createProductCommand.getQuantity() <= 0) {
-            throw new IllegalArgumentException("Quantity must be greater than zero.");
-        }
-        if (createProductCommand.getTitle().isBlank()) {
-            throw new IllegalArgumentException("Title must not be empty.");
+        if (productLookupEntity != null) {
+            throw new IllegalStateException(String.format("Product with productId: %s or title: %s already exists", createProductCommand.getProductId(), createProductCommand.getTitle()));
         }
     }
 }
