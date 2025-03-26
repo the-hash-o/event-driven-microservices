@@ -21,6 +21,7 @@ configurations {
 }
 
 repositories {
+	mavenLocal()
 	mavenCentral()
 }
 
@@ -33,6 +34,7 @@ dependencies {
 	implementation("org.postgresql:postgresql:42.7.5")
 	implementation("com.google.guava:guava:33.4.0-jre")
 	implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
+	implementation("com.appsdeveloperblog.estore:estore-core:0.0.2-SNAPSHOT")
 	compileOnly("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")

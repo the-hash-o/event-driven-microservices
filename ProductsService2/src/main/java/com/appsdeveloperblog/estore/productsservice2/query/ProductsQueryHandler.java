@@ -1,7 +1,7 @@
 package com.appsdeveloperblog.estore.productsservice2.query;
 
 import com.appsdeveloperblog.estore.productsservice2.data.repo.ProductRepository;
-import com.appsdeveloperblog.estore.productsservice2.model.ProductRestModel;
+import com.appsdeveloperblog.estore.productsservice2.model.ProductRequest;
 import lombok.RequiredArgsConstructor;
 import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.beans.BeanUtils;
@@ -17,15 +17,15 @@ public class ProductsQueryHandler {
     private final ProductRepository productRepository;
 
     @QueryHandler
-    public List<ProductRestModel> findProducts(FindProductsQuery query){
-        ArrayList<ProductRestModel> productRestModels = new ArrayList<>();
+    public List<ProductRequest> findProducts(FindProductsQuery query){
+        ArrayList<ProductRequest> productRequests = new ArrayList<>();
 
         productRepository.findAll().forEach(product -> {
-            ProductRestModel productRestModel = new ProductRestModel();
-            BeanUtils.copyProperties(product, productRestModel);
-            productRestModels.add(productRestModel);
+            ProductRequest productRequest = new ProductRequest();
+            BeanUtils.copyProperties(product, productRequest);
+            productRequests.add(productRequest);
         });
 
-        return productRestModels;
+        return productRequests;
     }
 }

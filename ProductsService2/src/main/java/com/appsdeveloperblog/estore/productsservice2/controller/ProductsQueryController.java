@@ -1,6 +1,6 @@
 package com.appsdeveloperblog.estore.productsservice2.controller;
 
-import com.appsdeveloperblog.estore.productsservice2.model.ProductRestModel;
+import com.appsdeveloperblog.estore.productsservice2.model.ProductRequest;
 import com.appsdeveloperblog.estore.productsservice2.query.FindProductsQuery;
 import lombok.RequiredArgsConstructor;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
@@ -19,10 +19,10 @@ public class ProductsQueryController {
     private final QueryGateway queryGateway;
 
     @GetMapping
-    private List<ProductRestModel> getProducts() {
+    private List<ProductRequest> getProducts() {
 
         FindProductsQuery findProductsQuery = new FindProductsQuery();
 
-        return queryGateway.query(findProductsQuery, ResponseTypes.multipleInstancesOf(ProductRestModel.class)).join();
+        return queryGateway.query(findProductsQuery, ResponseTypes.multipleInstancesOf(ProductRequest.class)).join();
     }
 }

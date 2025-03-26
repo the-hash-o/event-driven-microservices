@@ -3,9 +3,9 @@ POST http://localhost:8080/productsservice/products
 Content-Type: application/json
 
 {
-  "title": "Telefon nou skrr",
-  "price": 15,
-  "quantity": 1
+  "title": "Samsung Galaxy S24",
+  "price": 1200,
+  "quantity": 2
 }
 
 <> 2025-03-20T134846.404.json

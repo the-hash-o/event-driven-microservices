@@ -1,19 +1,20 @@
 package com.appsdeveloperblog.estore.productsservice2;
 
-import com.appsdeveloperblog.estore.productsservice2.command.CreateProductCommand;
+import com.appsdeveloperblog.estore.productsservice2.config.AxonXstreamConfig;
 import com.appsdeveloperblog.estore.productsservice2.events.ProductEventsErrorHandler;
 import com.appsdeveloperblog.estore.productsservice2.interceptor.CreateProductCommandInterceptor;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.config.EventProcessingConfigurer;
-import org.axonframework.eventhandling.PropagatingErrorHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
 @EnableDiscoveryClient
+@Import({AxonXstreamConfig.class})
 public class ProductsService2Application {
 
     public static void main(String[] args) {

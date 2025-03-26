@@ -1,0 +1,9 @@
+###
+POST http://localhost:8080/estore-core/orders
+Content-Type: application/json
+
+{
+  "productId":"31ad2658-7237-4712-a39c-f99e5bfdf829",
+  "quantity":1,
+  "addressId":"afbb5881-a872-4d13-993c-faeb8350eea6"
+}
